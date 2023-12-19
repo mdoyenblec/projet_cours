@@ -43,7 +43,7 @@ def main():
         
         
     ### PLOT 2 : Listings par room type ###
-    st.subheader("Number of Listings per Accommodates 🧑🏻‍🦰👨🏼‍🦰")
+    st.subheader("Number of Listings per Room Type 🧑🏻‍🦰👨🏼‍🦰")
     grouped_data_2 = data.groupby("room_type").count().loc[:,"id"]
 
     bar_chart_2 = alt.Chart(grouped_data_2.reset_index()).mark_bar().encode(
