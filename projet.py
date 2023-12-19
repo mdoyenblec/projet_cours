@@ -48,11 +48,10 @@ def main():
     moyennes_prix_par_arrondissement = data.groupby('neighbourhood')['price_eur'].mean()
     moyennes_prix_df = moyennes_prix_par_arrondissement.reset_index()
     mean_price_arr = round(moyennes_prix_df, 0)
-    mean_price_arr = mean_price_arr.sort_values(by='price_eur', ascending=False)
+    mean_price_arr = mean_price_arr.sort_values(by='price_eur', ascending=False)  # Sorting in descending order
 
     st.title('Mean Daily Price per Neighbourhood')
 
-    
     chart = alt.Chart(mean_price_arr).mark_bar().encode(
         y=alt.Y('neighbourhood:N', title='Arrondissements'),
         x=alt.X('price_eur:Q', title='Prix journalier moyen (EUR)')
