@@ -48,9 +48,9 @@ def main():
     moyennes_prix_par_arrondissement = data.groupby('neighbourhood')['price_eur'].mean()
     moyennes_prix_df = moyennes_prix_par_arrondissement.reset_index()
     mean_price_arr = round(moyennes_prix_df, 0)
-    mean_price_arr = mean_price_arr.sort_values(by='price_eur', ascending=True)
+    mean_price_arr = mean_price_arr.sort_values(by='price_eur', ascending=False)
 
-    st.title('Prix journalier moyen pour un hébergement par arrondissement (Septembre 2023)')
+    st.title('Mean Daily Price per Neighbourhood')
 
     
     chart = alt.Chart(mean_price_arr).mark_bar().encode(
