@@ -52,13 +52,13 @@ def main():
 
     st.title('Prix journalier moyen pour un hébergement par arrondissement (Septembre 2023)')
 
-    fig, ax = plt.subplots(figsize=(10, 8))
-    ax.barh(mean_price_arr['neighbourhood'], mean_price_arr['price_eur'])
+    
+    chart = alt.Chart(mean_price_arr).mark_bar().encode(
+        y=alt.Y('neighbourhood:N', title='Arrondissements'),
+        x=alt.X('price_eur:Q', title='Prix journalier moyen (EUR)')
+    ).properties(width=800, height=600, title='Prix journalier moyen (EUR) par arrondissement')
 
-    ax.set_title('Prix journalier moyen (EUR) par arrondissement')
-    ax.set_xlabel('Prix journalier moyen (EUR)')
-    ax.set_ylabel('Arrondissements')
-    st.pyplot(fig)
+    st.altair_chart(chart, use_container_width=True)
 
 
 
