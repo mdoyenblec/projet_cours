@@ -55,7 +55,7 @@ def main():
     chart = alt.Chart(mean_price_arr).mark_bar().encode(
         y=alt.Y('neighbourhood:N', title='Arrondissements'),
         x=alt.X('price_eur:Q', title='Prix journalier moyen (EUR)')
-    ).properties(width=800, height=600', title='Prix journalier moyen (EUR) par arrondissement')
+    ).properties(width=800, height=600, title='Prix journalier moyen (EUR) par arrondissement')
 
     st.altair_chart(chart, use_container_width=True)
 
