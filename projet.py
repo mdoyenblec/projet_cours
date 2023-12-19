@@ -29,7 +29,8 @@ def main():
 
 
     ### PLOT 1 : Listings par arrondissement ###
-    st.subheader("Number of Listings per Neighbourhood")
+    st.title('Number of Listings per Neighbourhood')
+    st.subheader("Nombre d'annonces par arrondissement")
     grouped_data = data[["id", "neighbourhood"]].groupby("neighbourhood").count().sort_values(by="id", ascending=False)
 
     bar_chart = alt.Chart(grouped_data.reset_index()).mark_bar().encode(
@@ -64,7 +65,8 @@ def main():
 
         
     ### PLOT 3 : Listings par room type ###
-    st.subheader("Number of Listings per Room Type 🧑🏻‍🦰👨🏼‍🦰")
+    st.title('Number of Listings per Room Type 🧑🏻‍🦰👨🏼‍🦰')
+    st.subheader("Nomber d'annonces par type de location")
     grouped_data_2 = data.groupby("room_type").count().loc[:,"id"]
 
     bar_chart_2 = alt.Chart(grouped_data_2.reset_index()).mark_bar().encode(
