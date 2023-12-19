@@ -41,8 +41,29 @@ def main():
         )
     st.altair_chart(bar_chart, use_container_width=True)
         
+    
+    #### PLOT 2 : Moyenne des prix par arrondissements ###
+    data['price'] = data['price'].replace('[\$,]', '', regex=True).astype(float)
+    data['price_eur'] = data['price'] * 0.94
+    moyennes_prix_par_arrondissement = data.groupby('neighbourhood')['price_eur'].mean()
+    moyennes_prix_df = moyennes_prix_par_arrondissement.reset_index()
+    mean_price_arr = round(moyennes_prix_df, 0)
+    mean_price_arr = mean_price_arr.sort_values(by='price_eur', ascending=True)
+
+    st.title('Prix journalier moyen pour un hébergement par arrondissement (Septembre 2023)')
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.barh(mean_price_arr['neighbourhood'], mean_price_arr['price_eur'])
+
+    ax.set_title('Prix journalier moyen (EUR) par arrondissement')
+    ax.set_xlabel('Prix journalier moyen (EUR)')
+    ax.set_ylabel('Arrondissements')
+    st.pyplot(fig)
+
+
+
         
-    ### PLOT 2 : Listings par room type ###
+    ### PLOT 3 : Listings par room type ###
     st.subheader("Number of Listings per Room Type 🧑🏻‍🦰👨🏼‍🦰")
     grouped_data_2 = data.groupby("room_type").count().loc[:,"id"]
 
